@@ -1,0 +1,31 @@
+# Installing nnmm on a server
+> since I forget how to to do this between installs / am not good at php
+
+- Install LAMP stack on a server
+- Get nnmm
+
+```
+# ssh $MY_SERVER
+cd /var/www/html/
+git clone https://github.com/unforswearing/nnmm.git
+```
+
+- edit index.php to update $user, $pass, and $database
+  - also can edit other variables, if that is yr thing
+
+- Add $user to mysql
+
+```
+CREATE USER '$user'@'localhost'
+IDENTIFIED BY '$pass'
+WITH MAX_QUERIES_PER_HOUR 100 MAX_UPDATES_PER_HOUR 100;
+```
+
+- Allow '$user' access to $database
+
+```
+USE $database;
+GRANT ALL PRIVILEGES ON * . * TO '$user'@'localhost';
+```
+
+Navigate to $MY_SERVER in your browser. If everything went well you will see the nnmm README file.
